@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:paddingTop="@dimen/default_spacing"
+                android:paddingBottom="@dimen/default_spacing"
+                android:paddingLeft="@dimen/default_spacing"
+                android:background="@android:color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ImageView
+            android:id="@+id/item_image"
+            android:layout_width="@dimen/list_image_size"
+            android:layout_height="@dimen/list_image_size"
+            android:layout_marginRight="@dimen/default_spacing"/>
+
+    <TextView
+            android:id="@+id/item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/item_image"
+            android:layout_marginRight="@dimen/default_spacing"
+            style="@style/ListItem.Title"
+            tools:text="Boat 1"/>
+
+    <TextView
+            android:id="@+id/item_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/item_image"
+            android:layout_marginTop="@dimen/small_spacing"
+            android:layout_marginRight="@dimen/default_spacing"
+            android:layout_below="@+id/item_title"
+            style="@style/ListItem.Subtitle"/>
+
+    <View
+            android:layout_below="@+id/item_image"
+            android:background="@color/grey"
+            android:layout_marginTop="@dimen/default_spacing"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+</RelativeLayout>
