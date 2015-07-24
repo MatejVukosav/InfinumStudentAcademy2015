@@ -12,14 +12,18 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import co.infinum.boatit.BoatApplication;
 import co.infinum.boatit.R;
 import co.infinum.boatit.adapter.BoatsAdapter;
 import co.infinum.boatit.helpers.MvpFactory;
 import co.infinum.boatit.models.Boat;
 import co.infinum.boatit.mvp.presenters.BoatsPresenter;
 import co.infinum.boatit.mvp.views.BoatsView;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
-public class MainActivity extends BaseActivity implements BoatsView {
+public class MainActivity extends BaseActivity implements BoatsView, AdapterView.OnItemClickListener {
 
     BoatsPresenter presenter;
 
@@ -52,6 +56,7 @@ public class MainActivity extends BaseActivity implements BoatsView {
     public void onBoatListReceived(List<Boat> boats) {
         adapter = new BoatsAdapter(this, R.layout.list_item_boats, boats);
         boatList.setAdapter(adapter);
+        boatList.setOnItemClickListener(this);
     }
 
     @Override
@@ -64,6 +69,21 @@ public class MainActivity extends BaseActivity implements BoatsView {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        BoatApplication.getApiService().getComments(adapter.getItem(position).getId(), 1, 100, new Callback<Response>() {
+            @Override
+            public void success(Response response, Response response2) {
+
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+
+            }
+        });
     }
 
     @Override
